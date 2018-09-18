@@ -5,13 +5,15 @@ import numpy as np
 import pandas as pd
 import sys, os
 #sys.path.append("interface")
-from spectrum import Spectrum
+#from spectrum import Spectrum
 from astropy.io import fits
-import norm_functions
+
+from GISIC.spectrum import Spectrum
+
 
 
 def normalize(wavelength, flux, sigma=30):
-    spec = Spectrum(wavelength, flux, fits=False)
+    spec = Spectrum(wavelength, flux)
     spec.generate_inflection_segments(sigma=sigma)
     spec.assess_segment_variation()
     spec.define_cont_points()
@@ -21,4 +23,4 @@ def normalize(wavelength, flux, sigma=30):
     spec.spline_continuum()
     spec.normalize()
 
-    return spec.flux_norm, spec.continuum
+    return np.array(spec.wavelength), np.array(spec.flux_norm), np.array(spec.continuum)

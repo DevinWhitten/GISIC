@@ -9,19 +9,17 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import norm_functions
 import scipy.interpolate as interp
 from astropy.table import Table
 from scipy.ndimage.filters import gaussian_filter
-from segment import Segment
+from GISIC.norm_functions import in_molecular_band
+from GISIC.segment import Segment
 
 ################################
 #Spectrum Class Definition
 ################################
 class Spectrum():
-    def __init__(self, wavelength, flux, sigma):
-
-
+    def __init__(self, wavelength, flux):
 
 
         self.wavelength = wavelength
@@ -31,7 +29,7 @@ class Spectrum():
 
         self.segments = None
         self.mad_global = None
-        
+
         return
 
     def generate_segments(self, bins=25):
@@ -88,11 +86,12 @@ class Spectrum():
         for i in range(len(self.ZEROS) - 1):
 
             #print(self.frame[self.frame['wave'].between(4000, 5000, inclusive=True)])
-            SEGMENT = self.frame[self.frame['wave'].between(self.ZEROS[i], self.ZEROS[i+1], inclusive=True)]
+            #print("HERE")
+            SEGMENT = self.frame[self.frame['wave'].between(self.ZEROS[i], self.ZEROS[i+1], inclusive=True)].copy()
             ### I don't care about positive peaks
             ### so if everything is negative
             if len(SEGMENT[SEGMENT['d2'] < 0.0]) > 0.8*len(SEGMENT['d2']):
-                MIN = SEGMENT[SEGMENT['d2'] == min(SEGMENT['d2'])]
+                MIN = SEGMENT[SEGMENT['d2'] == min(SEGMENT['d2'])].copy()
                 MIN.loc[:, "size"] = len(SEGMENT)
                 MINIMUMS.append(MIN)
 
@@ -105,7 +104,7 @@ class Spectrum():
         self.segments = []
         for i, row in EXTREMA.iterrows():
             #### G-band avoidance
-            if not norm_functions.in_molecular_band(row['wave'], tol=10):
+            if not in_molecular_band(row['wave'], tol=10):
                 #print(~norm_functions.in_molecular_band(row['wave'], tol=10))
                 SEGMENT = self.frame[self.frame['wave'].between(row['wave'] - int(width/2), row['wave']+ int(width/2), inclusive=True)]
                 self.segments.append(Segment(np.array(SEGMENT['wave']), np.array(SEGMENT['flux'])))
