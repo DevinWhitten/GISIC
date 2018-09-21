@@ -5,7 +5,11 @@ It is designed to accommodate spectra with heavy molecular features due to high
 elemental abundance enhancements.
 GISIC performs a gaussian smoothing of the flux array, and identifies molecular bands based on a numerical gradient. Continuum points are then interpolated with a cubic spline.
 
-Author: Devin D. Whitten
+[![PyPI Version](https://img.shields.io/badge/PyPi-1.4-green.svg)](https://pypi.org/project/GISIC/)
+
+Author
+------
+Devin D. Whitten
 
 Installation
 ------------
