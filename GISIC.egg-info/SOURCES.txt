@@ -1,0 +1,12 @@
+README.md
+setup.py
+GISIC/__init__.py
+GISIC/norm_functions.py
+GISIC/normalize.py
+GISIC/segment.py
+GISIC/spectrum.py
+GISIC.egg-info/PKG-INFO
+GISIC.egg-info/SOURCES.txt
+GISIC.egg-info/dependency_links.txt
+GISIC.egg-info/not-zip-safe
+GISIC.egg-info/top_level.txt
