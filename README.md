@@ -24,5 +24,5 @@ Coming soon.
 wave, norm_flux, continuum = GISIC.normalize(wave, flux, sigma=30)
 ```
 <!-- Animated GIF of AutoGUI -->
-<img src="https://github.com/DevinWhitten/GISIC/blob/master/images/continuum_animation.gif" width="80%"
+<img src="https://github.com/DevinWhitten/GISIC/blob/master/plots/continuum_animation.gif" width="80%"
 style="display:block;margin: 0 auto;">
