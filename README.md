@@ -6,6 +6,7 @@ elemental abundance enhancements.
 GISIC performs a gaussian smoothing of the flux array, and identifies molecular bands based on a numerical gradient. Continuum points are then interpolated with a cubic spline.
 
 [![PyPI Version](https://img.shields.io/badge/PyPi-1.4-green.svg)](https://pypi.org/project/GISIC/)
+[![GitHub License](https://img.shields.io/badge/license-GPLv3-yellowgreen.svg)](http://www.gnu.org/copyleft/gpl.html)
 
 Author
 ------
